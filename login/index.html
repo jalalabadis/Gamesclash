@@ -1,0 +1,274 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0"><meta name="theme-color" content="#000000">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Khel Bro, Jeet Bro | Cricket, Ludo, Chess and more!</title>
+<meta name="description" content="Some------" data-react-helmet="true">
+<meta name="keywords" content="fantasy cricket, khelbro, ludo, ludo khelo, win cash prizes" data-react-helmet="true">
+<meta property="og:description" content="Some------" data-react-helmet="true">
+<meta property="og:url" content="http://www.khelbro.com" data-react-helmet="true">
+<meta property="og:locale" content="en-in">
+<meta property="og:image" content="https://khelbro.com/images/khelbro-meta.jpg">
+<meta property="og:site_name" content="Some-------" data-react-helmet="true">
+<meta property="og:type" content="website"><meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="300"><meta property="og:image:height" content="300">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://khelbro.com/logo192.png">
+<meta name="twitter:title" content="Play Games Online and Earn Money | Ludo, Cricket, Chess, Carrom &amp; Many More Games | KhelBro" data-react-helmet="true">
+<meta name="twitter:description" content="Some---------" data-react-helmet="true">
+<meta name="apple-mobile-web-app-title" content="Some------" data-react-helmet="true">
+
+ <!----------Style Part------->
+<link href="/css/main.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="apple-touch-icon" href="/images/logo192.png">
+
+<style>
+    .Alert-NUMBER{
+    position: fixed;
+    top: 50px; 
+    left:2%;
+    width: 80%;
+    padding: 2px;
+    z-index: 3;
+}
+
+.Alert-OTP{
+    position: fixed;
+    top: 50px; 
+    left:2%;
+    width: 80%;
+    padding: 2px;
+    z-index: 3;
+}
+
+.alert{
+    display: none;
+}
+
+/* KEYFRAMES */
+
+
+
+/* Absolute Center Spinner */
+.loading {
+display: none;
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+</style>
+<!--<link rel="manifest" href="js/manifest.json">-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,800,900&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400&amp;display=swap">
+<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-BM6XDYQ00R&amp;l=dataLayer&amp;cx=c">
+</script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-233699090-1"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+<script>
+function gtag(){
+dataLayer.push(arguments)
+}
+window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-233699090-1")
+</script>
+<meta name="description" content="Some----------" data-rh="true">
+<meta name="keywords" content="Some----------" data-rh="true">
+<meta property="og:site_name" content="Some------" data-rh="true">
+<meta property="og:description" content="Some-----" data-rh="true">
+<meta name="twitter:title" content="Some----" data-rh="true">
+<meta name="twitter:description" content="Some----" data-rh="true">
+<meta name="apple-mobile-web-app-title" content="KSome----" data-rh="true">
+</head>
+<body>
+
+    <div class="Alert-NUMBER alert alert-danger">
+        <i class="fa-solid fa-circle-exclamation"></i>   Enter a valid mobile number.
+    </div>
+    <div class="Alert-OTP alert alert-danger">
+        <i class="fa-solid fa-circle-exclamation"></i>   Enter a valid OTP Code.
+    </div>
+  
+   
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class=""></div>
+    
+    <div class="leftContainer">
+        
+   <div id="cover" class="loading"></div>
+    
+
+         <!-----Start Login Part-->
+        <div class="main-area">
+    <div style="overflow-y: hidden;"><div class="splash-overlay">
+    </div><div class="splash-screen">
+    <figure>
+    <img width="100%" src="/images/global-gameSheetSplash.png" alt=""></figure></div>
+    <div class="position-absolute w-100 center-xy mx-auto" style="top: 45%; z-index: 4;">
+    <div class="d-flex text-white font-15 mb-4">Sign in or Sign up</div>
+    <div class="bg-white px-4 cxy flex-column" id="bgsingup" style="width: 85%; height: 70px; border-radius: 5px;">
+    
+    <div class="input-group" id="numberpart" style="transition: top 0.5s ease 0s; top: 25px;"><div class="input-group-prepend">
+    <div class="input-group-text" style="width: 100px;" id="countrycode">+91</div></div>
+    <input class="form-control" name="mobile" type="tel" id="number" placeholder="Mobile number" value="" style="transition: all 3s ease-out 0s;">
+    <div class="invalid-feedback">Enter a valid mobile number</div></div>
+
+    <div class="input-group pt-2" id="optpart" style="transition: left 0.5s ease 0s; left: -500px;">
+    <div class="input-group-prepend"><div class="input-group-text" style="width: 100px;">OTP</div></div>
+    <input class="form-control" name="otp" type="tel" id="OTPcode" placeholder="Enter OTP" autocomplete="off" value="">
+    <div class="invalid-feedback">Enter a correct OTP</div></div>
+
+
+    </div>
+    <button class="bg-green refer-button cxy mt-4" style="width: 85%;" id="sign-in-button">Continue</button>
+    <button class="bg-green refer-button cxy mt-4" style="width: 85%; display: none;" id="codeverify" onclick="codeverify()">Continue</button>
+    </div>
+    
+    <!---------Fotter-->
+    <div class="login-footer">
+         Some Footer------------
+    </div></div></div></div><div class="divider-y"></div>
+    <div class="rightContainer"><div class="rcBanner flex-center">
+        <picture class="rcBanner-img-container"><img src="/images/gamesclashin.png" alt="">
+        </picture><div class="rcBanner-text">Khel Bro <span class="rcBanner-text-bold">Win Real Cash!</span>
+        </div>
+<div class="rcBanner-footer">For best experience, open&nbsp;<a href="#!" style="color: rgb(44, 44, 44); font-weight: 500; text-decoration: none;">
+    KhelBro.com</a>&nbsp;on&nbsp;<img src="/images/global-chrome.png" alt="">&nbsp;chrome mobile</div></div></div></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js">
+</script><script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script src="/js/localforage.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<!--	add firebase SDK-->
+<script src="/js/firebase.js"></script>
+<script src="/js/firebasesdk.js"></script>
+<script src="/js/login.js"></script>
+
+<script>$(window).on('load', function () {
+    
+    });</script>
+        </body></html>

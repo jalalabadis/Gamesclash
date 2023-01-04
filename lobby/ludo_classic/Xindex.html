@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/images/favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Play Games Online and Earn Money | Ludo, Cricket, Chess, Carrom Many More Game</title>
+    <meta name="description" content="Not set------------" data-react-helmet="true">
+    <meta name="keywords" content="Not set--------------" data-react-helmet="true">
+    <meta property="og:description" content="Not Set-------------" data-react-helmet="true">
+    <meta property="og:url" content="http://www.khelbro.com" data-react-helmet="true">
+    <meta property="og:locale" content="en-in">
+    <meta property="og:image" content="https://khelbro.com/images/khelbro-meta.jpg">
+    <meta property="og:site_name" content="Not Set----------" data-react-helmet="true">
+    <meta property="og:type" content="website">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:title" content="Not Set------------" data-react-helmet="true">
+    <!----------Style Part------->
+    <link rel="apple-touch-icon" href="/images/logo192.png">
+    <link rel="manifest" href="/js/manifest.json">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!----------Style CDN----------->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,800,900&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400&amp;display=swap">
+    <script type="text/javascript" async=""
+        src="https://www.googletagmanager.com/gtag/js?id=G-BM6XDYQ00R&amp;l=dataLayer&amp;cx=c">
+        </script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js">
+    </script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-233699090-1"></script>
+
+    <meta name="description" content="not Set---------" data-rh="true">
+    <meta property="og:description" content="Not Set--------------" data-rh="true">
+    <meta name="twitter:title" content="Not Set---------------" data-rh="true">
+    <meta name="twitter:description" content="Not Set----------" data-rh="true">
+    <meta name="apple-mobile-web-app-title" content="Not Set-------" data-rh="true">
+</head>
+<body>
+    
+    <div id="gameWindow" class="FindPlayer_gamePlay__1m05N" style="display: block;"><iframe title="KhelBro Ludo"
+        allow="autoplay *; microphone; fullscreen *" allowfullscreen="true"
+       frameborder="0" src="/lobby/kb_ludo_classic/Zindex.html" style="z-index: unset;"></iframe>
+   </div>
+   <script src="/js/localforage.min.js"></script>
+   <script src="/js/firebase.js"></script>
+   <script src="/js/main.js"></script>
+
+   <script>
+
+function usercheck(){
+    localforage.getItem("userlogindata").then((data)=>{
+    if(data==true){
+      doplayredycheck();
+    }
+    else{
+     window.location.href = "/login";
+    };
+    })};
+/////////////////////////////////
+function doplayredycheck(){
+  localforage.getItem("UserID").then((data)=>{
+  var RED = firebase.database().ref("User/"+data).child('Ticket');
+  RED.on('value', function(snapshot) {
+  var Reddata = (snapshot.val());
+  if(Reddata=="Yes"){
+    window.history.pushState('find-player', 'Game Play', '/find-player')
+
+  }
+  });});
+}
+   </script>
+</body>
+</html>

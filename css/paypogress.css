@@ -1,0 +1,297 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
+ * {
+	 box-sizing: border-box;
+}
+ body {
+	 font-family: "Open Sans", sans-serif;
+}
+ .center {
+	 margin: 0 auto;
+	 text-align: center;
+}
+ #processing {
+	 position: relative;
+	 width: 100%;
+	 height: 100vh;
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 align-items: center;
+	 padding: 15px;
+	 background-color: #e4e4e4;
+}
+ #processing.uncomplete .gear-wrapper-1 {
+	 animation: gearEnter1 0.5s ease 1s forwards;
+}
+ #processing.uncomplete .gear-wrapper-2 {
+	 animation: gearEnter2 0.5s ease 1.5s forwards;
+}
+ #processing.uncomplete .gear-wrapper-3 {
+	 animation: gearEnter3 0.5s ease 1.25s forwards;
+}
+ #processing.uncomplete .gear-wrapper-4 {
+	 animation: gearEnter4 0.5s ease 0.75s forwards;
+}
+ #processing.complete .gears {
+	 background-color: transparent;
+	 transition: background-color 0.25s ease 0.75s;
+}
+ #processing.complete .gear-wrapper-1 {
+	 transform: rotate(10deg) translate3d(-5px,-5px,0);
+	 animation: gearLeave1 0.5s ease 0.5s forwards;
+}
+ #processing.complete .gear-wrapper-2 {
+	 transform: rotate(25deg) translate3d(20px,-50px,0);
+	 animation: gearLeave2 0.5s ease 0.5s forwards;
+}
+ #processing.complete .gear-wrapper-3 {
+	 transform: rotate(15deg) translate3d(-25px,-15px,0);
+	 animation: gearLeave3 0.5s ease 0.5s forwards;
+}
+ #processing.complete .gear-wrapper-4 {
+	 transform: translate3d(0,0,0);
+	 animation: gearLeave4 0.5s ease 0.5s forwards;
+}
+ #processing.complete .loading-bar {
+	 animation: hideLoading 0.5s forwards;
+}
+ #processing.complete .checkmark.checkmark-success {
+	 animation: fillCheckSuccess 0.4s cubic-bezier(0.65,0,0.45,1) 1s forwards, beatCheck 0.2s ease-out 1.5s forwards, echoSuccess 1.25s ease-out 1.5s forwards;
+}
+ #processing.complete .checkmark.checkmark-success .checkmark-circle {
+	 stroke: #3c763d;
+}
+ #processing.complete .checkmark.checkmark-error {
+	 animation: fillCheckError 0.4s cubic-bezier(0.65,0,0.45,1) 1s forwards, beatCheck 0.2s ease-out 1.5s forwards, echoError 1.25s ease-out 1.5s forwards;
+}
+ #processing.complete .checkmark.checkmark-error .checkmark-circle {
+	 stroke: #a94442;
+}
+ #processing.complete .checkmark-circle {
+	 animation: strokeCheck 0.5s cubic-bezier(0.65,0,0.45,1) 0.75s forwards;
+}
+ #processing.complete .checkmark-check {
+	 animation: strokeCheck 0.3s cubic-bezier(0.65,0,0.45,1) 1.25s forwards;
+}
+ h1 {
+	 color: #333;
+	 font-weight: 400;
+}
+ h2 {
+	 color: #999;
+	 font-weight: 300;
+}
+ .wrapper {
+	 position: relative;
+	 margin: 30px auto;
+}
+ .gears {
+	 width: 200px;
+	 height: 200px;
+	 background-color: #999;
+	 border-radius: 50%;
+	 overflow: hidden;
+	 transform: scale(0);
+	 animation: scale 0.5s ease 0.5s forwards;
+}
+ @keyframes scale {
+	 to {
+		 transform: scale(1);
+	}
+}
+ .gear-wrapper {
+	 position: absolute;
+}
+ .gear-wrapper.gear-wrapper-1 {
+	 top: 0;
+	 left: 0;
+	 transform: rotate(10deg) translate3d(-40px,-60px,0);
+}
+ .gear-wrapper.gear-wrapper-2 {
+	 top: 0;
+	 right: 0;
+	 transform: rotate(25deg) translate3d(70px,-130px,0);
+}
+ .gear-wrapper.gear-wrapper-3 {
+	 bottom: 0;
+	 right: 0;
+	 transform: rotate(15deg) translate3d(30px,20px,0);
+}
+ .gear-wrapper.gear-wrapper-4 {
+	 bottom: 0;
+	 left: 0;
+	 transform: translate3d(-70px,70px,0);
+}
+ @keyframes gearEnter1 {
+	 to {
+		 transform: rotate(10deg) translate3d(-5px,-5px,0);
+	}
+}
+ @keyframes gearEnter2 {
+	 to {
+		 transform: rotate(25deg) translate3d(20px,-50px,0);
+	}
+}
+ @keyframes gearEnter3 {
+	 to {
+		 transform: rotate(15deg) translate3d(-25px,-15px,0);
+	}
+}
+ @keyframes gearEnter4 {
+	 to {
+		 transform: translate3d(0,0,0);
+	}
+}
+ @keyframes gearLeave1 {
+	 from {
+		 transform: rotate(10deg) translate3d(-5px,-5px,0);
+	}
+	 to {
+		 transform: rotate(10deg) translate3d(-40px,-60px,0);
+	}
+}
+ @keyframes gearLeave2 {
+	 from {
+		 transform: rotate(25deg) translate3d(20px,-50px,0);
+	}
+	 to {
+		 transform: rotate(25deg) translate3d(70px,-130px,0);
+	}
+}
+ @keyframes gearLeave3 {
+	 from {
+		 transform: rotate(15deg) translate3d(-25px,-15px,0);
+	}
+	 to {
+		 transform: rotate(15deg) translate3d(30px,20px,0);
+	}
+}
+ @keyframes gearLeave4 {
+	 from {
+		 transform: translate3d(0,0,0);
+	}
+	 to {
+		 transform: translate3d(-70px,70px,0);
+	}
+}
+ .gear {
+	 fill: #e4e4e4;
+	 transform-origin: 50% 50%;
+}
+ .gear.gear-1 {
+	 width: 90px;
+	 height: 90px;
+	 animation: gearRotate 1s linear 2s infinite reverse;
+}
+ .gear.gear-2 {
+	 width: 150px;
+	 height: 150px;
+	 animation: gearRotate 1.5s linear 2s infinite;
+}
+ .gear.gear-3 {
+	 width: 60px;
+	 height: 60px;
+	 animation: gearRotate 0.75s linear 2s infinite reverse;
+}
+ .gear.gear-4 {
+	 width: 120px;
+	 height: 110px;
+	 animation: gearRotate 1.25s linear 2s infinite;
+}
+ @keyframes gearRotate {
+	 to {
+		 transform: rotate(360deg);
+	}
+}
+ .loading-bar {
+	 position: relative;
+	 width: 200px;
+	 height: 10px;
+	 margin-top: 50px;
+	 background-color: #e4e4e4;
+	 border-radius: 10px;
+	 overflow: hidden;
+}
+ .loading-bar span {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 width: 0;
+	 height: 100%;
+	 background-color: #999;
+	 transition: width 0.5s ease;
+}
+ @keyframes hideLoading {
+	 to {
+		 height: 0;
+		 margin: 0;
+		 opacity: 0;
+	}
+}
+ .checkmark {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 width: 100px;
+	 height: 100px;
+	 margin-top: -50px;
+	 margin-left: -50px;
+	 display: block;
+	 border-radius: 50%;
+	 stroke-width: 1px;
+	 stroke: #fff;
+	 stroke-miterlimit: 10px;
+}
+ .checkmark-circle {
+	 fill: none;
+	 stroke-dasharray: 200px;
+	 stroke-dashoffset: 200px;
+	 stroke-width: 1px;
+	 stroke-miterlimit: 10px;
+}
+ @keyframes fillCheckSuccess {
+	 to {
+		 box-shadow: inset 0 0 0 100px #3c763d;
+	}
+}
+ @keyframes fillCheckError {
+	 to {
+		 box-shadow: inset 0 0 0 100px #a94442;
+	}
+}
+ @keyframes beatCheck {
+	 0%, 100% {
+		 transform: scale(1);
+	}
+	 50% {
+		 transform: scale(1.05);
+	}
+}
+ @keyframes echoSuccess {
+	 from {
+		 box-shadow: inset 0 0 0 100px #3c763d, 0 0 0 0 #3c763d;
+	}
+	 to {
+		 box-shadow: inset 0 0 0 100px #3c763d, 0 0 0 50px transparent;
+	}
+}
+ @keyframes echoError {
+	 from {
+		 box-shadow: inset 0 0 0 100px #a94442, 0 0 0 0 #a94442;
+	}
+	 to {
+		 box-shadow: inset 0 0 0 100px #a94442, 0 0 0 50px transparent;
+	}
+}
+ .checkmark-check {
+	 stroke: #fff;
+	 stroke-dasharray: 100px;
+	 stroke-dashoffset: 100px;
+	 transform-origin: 50% 50%;
+}
+ @keyframes strokeCheck {
+	 to {
+		 stroke-dashoffset: 0px;
+	}
+}
+ 

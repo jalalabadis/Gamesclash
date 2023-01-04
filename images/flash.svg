@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="145" viewBox="0 0 70 145">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.017" x2="0.5" y2="1.014" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e4d0ff"/>
+      <stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path id="flash_Light" d="M35,0,70,145H0Z" transform="translate(70 145) rotate(180)" fill="url(#linear-gradient)"/>
+</svg>
