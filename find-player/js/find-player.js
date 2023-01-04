@@ -1,4 +1,4 @@
-var base_url = 'http://localhost:8081/';
+var base_url = 'https://games.gamesclash.in/';
 var server_url;
 var find_timer;
 var totalSeconds = 0;
@@ -103,7 +103,10 @@ localforage.getItem('EntryID').then(function(value){
             });
             firebase.database().ref('Lobby/Short_room/'+value+'/'+room_data.roomID).remove();
 
-            
+ ///Remove player Waiting
+ firebase.database().ref('Lobby/Short/'+EntryID).update({
+    Waiting: 'nowaiting'
+});           
 ///Game player Count
 var lobby_parent = firebase.database().ref('Lobby/Short/'+value);
 lobby_parent.once('value').then(snapshot=>{
@@ -130,6 +133,9 @@ if(snapshot.val().Ticket!=='Playing'){
         playerID: playerids,
         roomID: ms
     });
+firebase.database().ref('Lobby/Short/'+EntryID).update({
+    Waiting: 1
+});
 firebase.database().ref('User/'+playerids).update({
 MakeRoomID: ms
 });
