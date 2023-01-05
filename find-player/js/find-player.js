@@ -1,4 +1,4 @@
-var base_url = 'http://localhost:8081/';
+var base_url = 'https://ludomultiplayer333-production.up.railway.app/';
 var server_url;
 var find_timer;
 var totalSeconds = 0;
@@ -111,9 +111,12 @@ localforage.getItem('EntryID').then(function(value){
                 Opponent: room_data.playerID,
                 Ticket: 'Playing'
             });
-            firebase.database().ref('Lobby/Short_room/'+value+'/'+room_data.roomID).remove();
+            firebase.database().ref('Lobby/'+GameTypes+'_room/'+value+'/'+room_data.roomID).remove();
 
-            
+ ///Remove player Waiting
+ firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+    Waiting: 'nowaiting'
+});           
 ///Game player Count
 var lobby_parent = firebase.database().ref('Lobby/'+GameTypes+'/'+value);
 lobby_parent.once('value').then(snapshot=>{
@@ -141,6 +144,9 @@ if(snapshot.val().Ticket!=='Playing'){
         playerID: playerids,
         roomID: ms
     });
+firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+    Waiting: 1
+});
 firebase.database().ref('User/'+playerids).update({
 MakeRoomID: ms
 });
@@ -195,3 +201,4 @@ lobby_parent.once('value').then(snapshot=>{
 });
 });});
 };
+
