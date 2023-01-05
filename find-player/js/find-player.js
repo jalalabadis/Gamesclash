@@ -111,10 +111,10 @@ localforage.getItem('EntryID').then(function(value){
                 Opponent: room_data.playerID,
                 Ticket: 'Playing'
             });
-            firebase.database().ref('Lobby/'+GameTypes+'_room/'+value+'/'+room_data.roomID).remove();
+firebase.database().ref('Lobby/'+GameTypes+'_room/'+value+'/'+room_data.roomID).remove();
 
  ///Remove player Waiting
- firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+ firebase.database().ref('Lobby/'+GameTypes+'/'+value).update({
     Waiting: 'nowaiting'
 });           
 ///Game player Count
@@ -202,3 +202,6 @@ lobby_parent.once('value').then(snapshot=>{
 });});
 };
 
+function stopfind(){
+window.location.replace('/');
+};
