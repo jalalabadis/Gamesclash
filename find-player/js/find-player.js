@@ -1,9 +1,9 @@
-var base_url = 'http://localhost:8081/';
+var base_url = 'https://ludomultiplayer333-production.up.railway.app/';
 var server_url;
 var find_timer;
 var totalSeconds = 0;
 var guserID;
-var game_type = 2;
+var game_type;
 var avatar;
 var avatar_ind = 1;
 var player_name;
@@ -19,6 +19,15 @@ localforage.getItem('UserID').then(function(value){
 });
 localforage.getItem('Username').then(function(value){
     player_name = value;
+});
+
+localforage.getItem('GameTypes').then(GameTypes => {
+if(GameTypes=='Classic'){
+game_type = 1;
+}
+else if(GameTypes=='Short'){
+game_type = 2;
+}
 });
 
 function usercheck() {
@@ -87,7 +96,8 @@ console.log(server_url);
 ////////////////Waitng Room check
 function  checkwaitingroom(){
 localforage.getItem('EntryID').then(function(value){
-    firebase.database().ref('Lobby/Short_room/'+value).once('value').then(function(snapshot){
+    localforage.getItem('GameTypes').then(GameTypes => {
+    firebase.database().ref('Lobby/'+GameTypes+'_room/'+value).once('value').then(function(snapshot){
         if(snapshot.numChildren()>0){
             var jsonobj = snapshot.val();
             const actionplayer = Object.keys(jsonobj)[0];
@@ -101,11 +111,14 @@ localforage.getItem('EntryID').then(function(value){
                 Opponent: room_data.playerID,
                 Ticket: 'Playing'
             });
-            firebase.database().ref('Lobby/Short_room/'+value+'/'+room_data.roomID).remove();
+            firebase.database().ref('Lobby/'+GameTypes+'_room/'+value+'/'+room_data.roomID).remove();
 
-            
+ ///Remove player Waiting
+ firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+    Waiting: 'nowaiting'
+});           
 ///Game player Count
-var lobby_parent = firebase.database().ref('Lobby/Short/'+value);
+var lobby_parent = firebase.database().ref('Lobby/'+GameTypes+'/'+value);
 lobby_parent.once('value').then(snapshot=>{
     lobby_parent.update({
         Playnow: +snapshot.val().Playnow+2
@@ -114,22 +127,26 @@ lobby_parent.once('value').then(snapshot=>{
             }
         }
         else{
-  make_new_room(value);
+  make_new_room(value, GameTypes);
  };
+});
  });
 });
 };
 
 ////Make new Room
-function make_new_room(EntryID){
+function make_new_room(EntryID, GameTypes){
     var ms = Date.now();
 localforage.getItem('UserID').then(function(playerids){
 firebase.database().ref('User/'+playerids).once('value').then(snapshot=>{
 if(snapshot.val().Ticket!=='Playing'){
-    firebase.database().ref('Lobby/Short_room/'+EntryID+'/'+ms).update({
+    firebase.database().ref('Lobby/'+GameTypes+'_room/'+EntryID+'/'+ms).update({
         playerID: playerids,
         roomID: ms
     });
+firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+    Waiting: 1
+});
 firebase.database().ref('User/'+playerids).update({
 MakeRoomID: ms
 });
@@ -167,7 +184,8 @@ function pad(val) {
 function Gameover_lobby(){
 ///Game player ----
 localforage.getItem('EntryID').then(function(value){
-var lobby_parent = firebase.database().ref('Lobby/Short/'+value);
+localforage.getItem('GameTypes').then(GameTypes => {
+var lobby_parent = firebase.database().ref('Lobby/'+GameTypes+'/'+value);
 lobby_parent.once('value').then(snapshot=>{
     var current_lobby =snapshot.val().Playnow-2;
     if(current_lobby<0){
@@ -181,5 +199,5 @@ lobby_parent.once('value').then(snapshot=>{
     });
 }
 });
-});
+});});
 };

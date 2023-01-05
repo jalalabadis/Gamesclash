@@ -1,1 +1,59 @@
-localforage['getItem']('UserID')['then'](_0x3e2049=>{if(_0x3e2049!==null){const _0x1a2431=firebase['database']()['ref']('User/'+_0x3e2049);_0x1a2431['once']('value')['then'](_0x1a10e5=>{var _0x39f0ba=_0x1a10e5['val']()['Ticket'];if(_0x39f0ba=='Yes')callTicketCancel();else _0x39f0ba=='Playing'&&firebase['database']()['ref']('User/'+_0x3e2049+'/Joystick')['update']({'StakeMiss':0x6});});}});function callTicketCancel(){localforage['getItem']('GameTypes')['then'](_0x21b0dc=>{var _0x9daf2a=_0x21b0dc;callTicketCancelAction(_0x9daf2a);});}function callTicketCancelAction(_0x3d6090){localforage['getItem']('EntryID')['then'](_0x3b2797=>{var _0x394736=_0x3b2797;callTicketCancelNext(_0x3d6090,_0x394736);});};function callTicketCancelNext(_0x1c1d11,_0x23f062){localforage['getItem']('UserID')['then'](_0x678071=>{const _0x2ffda3=firebase['database']()['ref']('User/'+_0x678071);_0x2ffda3['once']('value')['then'](_0xb39770=>{var _0x215b3d=_0xb39770['val']()['MakeRoomID'];firebase['database']()['ref']('Lobby/'+_0x1c1d11+'/'+_0x23f062+'/'+_0x215b3d)['remove'](updateuserTricket);});}),localforage['getItem']('EntryID')['then'](_0x4a1263=>{firebase['database']()['ref']('Lobby/'+_0x1c1d11+'/'+_0x4a1263)['update']({'Waiting':'nowaiting'});});};function updateuserTricket(){localforage['getItem']('UserID')['then'](_0x46db08=>{const _0x5ed12d=firebase['database']()['ref']('User/'+_0x46db08);_0x5ed12d['once']('value')['then'](_0x4b0422=>{var _0x18a0f2=+_0x4b0422['val']()['EntryFee'];_0x5ed12d['update']({'DEPOSITCASH':+_0x4b0422['val']()['DEPOSITCASH']+_0x18a0f2,'TicketPrize':0x0,'Opponent':0x0,'EntryFee':0x0,'Ticket':0x0,'MakeRoomID':0x0},Relodcash)['then'](()=>{});});});};function Relodcash(){localforage['getItem']('UserID')['then'](_0x2f072f=>{const _0x79a37a=firebase['database']()['ref']('User/'+_0x2f072f);_0x79a37a['once']('value')['then'](_0x3e8c41=>{var _0x132ee1=+_0x3e8c41['val']()['DEPOSITCASH'],_0x472d70=+_0x3e8c41['val']()['WINNINGSCASH'];document['getElementById']('wincash')['innerHTML']=+_0x132ee1+_0x472d70;});}),doalertReturnentrefee();};function doalertReturnentrefee(){$('.Alert-antrefeeReturn')['show'](),setTimeout(function(){$('.Alert-antrefeeReturn')['hide']();},0x7d0);};
+localforage.getItem('UserID').then(userId => {
+    if (userId !== null) {
+    firebase.database().ref('User/' + userId).once('value').then(snapshot => {
+            var Ticket = snapshot.val().Ticket;
+            if (Ticket == 'Yes'){
+                callTicketCancel(userId);
+            } 
+        });
+    }
+});
+
+function callTicketCancel(userId) {
+    localforage.getItem('GameTypes').then(GameTypes => {
+    localforage.getItem('EntryID').then(EntryID => {
+    firebase.database().ref('User/' + userId).once('value').then(snapshot=>{
+   var MakeRoomID = snapshot.val().MakeRoomID;
+   firebase.database().ref('Lobby/'+GameTypes+'_room/'+EntryID+'/'+MakeRoomID).remove();
+   firebase.database().ref('Lobby/'+GameTypes+'/'+EntryID).update({
+    Waiting: 'nowaiting'
+   },updateuserTricket);
+    });
+    });    
+    });
+};
+
+function updateuserTricket(){
+localforage.getItem('UserID').then(UserID=>{
+var User_parent = firebase.database().ref('User/'+UserID);
+User_parent.once('value').then(snapshot=>{
+    var EntryFee = +snapshot.val().EntryFee;
+User_parent.update({
+    'DEPOSITCASH': +snapshot.val().DEPOSITCASH+EntryFee,
+    'TicketPrize': 0,
+    'Opponent': 0,
+    'EntryFee': 0,
+    'Ticket': 0,
+    'MakeRoomID': 0
+},Relodcash);
+});
+
+});
+};
+
+function Relodcash(){
+localforage.getItem('UserID').then(UserID=>{
+firebase.database().ref('User/'+UserID).once('value').then(snapshot=>{
+    var DEPOSITCASH = +snapshot.val().DEPOSITCASH;
+    var WINNINGSCASH = +snapshot.val().WINNINGSCASH;
+    document.getElementById('wincash').innerHTML = +DEPOSITCASH+WINNINGSCASH;
+    doalertReturnentrefee();
+})
+});
+};
+
+function doalertReturnentrefee() {
+    $('.Alert-antrefeeReturn')['show'](), setTimeout(function() {
+        $('.Alert-antrefeeReturn')['hide']();
+    }, 0x7d0);
+};
